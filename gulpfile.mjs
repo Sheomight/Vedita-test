@@ -25,6 +25,5 @@ const serve = () => {
   gulp.watch('src/js/**.js', gulp.series(scripts)).on('change', sync.reload)
 }
 
-
 export default gulp.series( clear, fonts, images, html, scss, scripts, serve) 
-export const deploy = ghPages
+export const build = gulp.task('build', gulp.series(clear, fonts, images, html, scss, scripts));
