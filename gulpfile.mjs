@@ -15,7 +15,7 @@ function clear() {
   return deleteAsync(['dist'])
 }
  
-const serve = () => {
+const watchChanges = () => {
   sync.init({
     server: './dist'
   })
@@ -25,5 +25,5 @@ const serve = () => {
   gulp.watch('src/js/**.js', gulp.series(scripts)).on('change', sync.reload)
 }
 
-export default gulp.series( clear, fonts, images, html, scss, scripts, serve) 
+export const serve = gulp.task('serve', gulp.series(clear, fonts, images, html, scss, scripts, watchChanges))
 export const build = gulp.task('build', gulp.series(clear, fonts, images, html, scss, scripts));
